@@ -29,5 +29,7 @@ Route.group(() => {
 	//authorize user with token before run controller
 	Route.post('projects', 'ProjectController.create').middleware('auth'); 
 	Route.delete('projects/:id', 'ProjectController.destroy').middleware('auth'); 
+	Route.patch('projects/:id', 'ProjectController.update').middleware('auth'); 
+
 })
 	.prefix('api');
