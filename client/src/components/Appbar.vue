@@ -11,7 +11,7 @@
       <v-btn depressed color="indigo" small v-if='!isLoggedIn' to="/register">
         <v-icon small class="pr-1">mdi-account-plus-outline</v-icon>Register
       </v-btn>
-      <v-btn depressed color="indigo" small v-if='!isLoggedIn'>
+      <v-btn depressed color="indigo" small v-if='!isLoggedIn' to="/login">
         <v-icon small class="pr-1">mdi-account-box</v-icon>Login
       </v-btn>
       <v-btn depressed color="indigo" small v-if='isLoggedIn' @click='logout'>
