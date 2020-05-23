@@ -1,4 +1,6 @@
+import Vue from 'vue';
 import HTTP from '../http';
+
 // import router from '../router/index';
 
 export default {
@@ -8,6 +10,12 @@ export default {
         newProjectName: null,
     },
     actions: {
+        fetchProjects({ commit }) {  //fetch existed projects
+            return HTTP().get('/projects')
+                .then(({ data }) => {
+                    commit('setProjects', data);                 
+                })
+        },
         createProject({ commit, state }) {
             return HTTP().post('/projects', {
                 title: state.newProjectName,
@@ -16,7 +24,12 @@ export default {
                 commit('setNewProjectName', null);
             })
         },
-
+        saveProject({ commit }, project ) {
+            return HTTP().patch(`/projects/${project.id}`, project)
+                .then(() => {
+                    commit('unsetEditMode', project);                 
+                })
+        }
     },
     getters: {
 
@@ -27,6 +40,20 @@ export default {
         },
         appendProject(state, project) {
             state.projects.push(project);
-        }
+        },
+        setProjects(state, projects) {
+            state.projects = projects;
+        },
+        setEditProjectName(state, {project, title}){
+            project.title = title;
+        },
+        setEditMode(state, project) {
+            // project.setEditMode = true;
+            Vue.set(project, 'isEditMode', true)
+        },
+        unsetEditMode(state, project) {
+            // project.setEditMode = true;
+            Vue.set(project, 'isEditMode', false)
+        },
     }
 }
