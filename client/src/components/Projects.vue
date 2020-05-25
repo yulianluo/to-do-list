@@ -9,6 +9,7 @@
         @onEdit="setEditMode(project)"
         @onSave="saveProject(project)"
         @onDelete="deleteProject(project)"
+        @onClick="projectClicked(project)"
         />
     </div>
 
@@ -17,7 +18,7 @@
     placeholder="project name" 
     @onInput="setNewProjectName"
     :value="newProjectName"
-    @create = "createProject"
+    @create="createProject"
     />
 
   </Panel>
@@ -40,16 +41,24 @@ export default {
     ...mapState("projects", ["newProjectName", "projects"])
   },
   methods: {
+      projectClicked(project){
+          this.setCurrentProject(project);
+          this.fetchTasksForProject(project);
+      },
     ...mapMutations("projects", [
       "setNewProjectName",
       "setEditMode",
-      "setEditProjectName"
+      "setEditProjectName",
+      "setCurrentProject"
     ]),
     ...mapActions("projects", [
       "createProject",
       "fetchProjects",
       "saveProject",
       "deleteProject"
+    ]),
+    ...mapActions("tasks", [
+        "fetchTasksForProject",
     ])
   }
 };

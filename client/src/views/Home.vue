@@ -5,10 +5,10 @@
         <Projects />
       </v-flex>
 
-      <v-flex xs7 offset-xs1>
-        <Panel title="Tasks">
-          <h1>Test</h1>
-        </Panel>
+      <v-flex xs7 offset-xs1 v-if='currentProject'>
+        
+          <Tasks />
+        
       </v-flex>
     </v-layout>
   </v-container>
@@ -16,14 +16,16 @@
 
 <script>
 // @ is an alias to /src
-import Projects from "@/components/Projects.vue";
-import { mapGetters } from 'vuex';
+import Projects from "@/components/Projects";
+import Tasks from "@/components/Tasks";
+import { mapGetters, mapState } from 'vuex';
 import router from '../router';
 
 export default {
   name: "Home",
   components: {
-    Projects
+    Projects,
+    Tasks
   },
   mounted(){
     if(!this.isLoggedIn){
@@ -31,6 +33,7 @@ export default {
     }
   },
   computed:{
+    ...mapState('projects',['currentProject',]),
     ...mapGetters('authentication', ['isLoggedIn'])
   }
 };

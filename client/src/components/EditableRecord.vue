@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs9 class="text-left">
-      <span v-if="!isEditMode">{{ title }}</span>
+      <span @click="$emit('onClick')" v-if="!isEditMode">{{ title }}</span>
       <v-text-field
         autofocus
         dense
@@ -10,26 +10,13 @@
         :value="title"
         @keyup.enter="$emit('onSave')"
         @input="$emit('onInput', $event)"
-        
       ></v-text-field>
     </v-flex>
     <v-flex xs3>
-      <v-btn
-        text
-        icon
-        color="indigo lighten-2"
-        v-if="!isEditMode"
-        @click="$emit('onEdit')"
-      >
+      <v-btn text icon color="indigo lighten-2" v-if="!isEditMode" @click="$emit('onEdit')">
         <v-icon>mdi-pencil-outline</v-icon>
       </v-btn>
-      <v-btn
-        text
-        icon
-        color="indigo lighten-2"
-        v-if="isEditMode"
-        @click="$emit('onSave')"
-      >
+      <v-btn text icon color="indigo lighten-2" v-if="isEditMode" @click="$emit('onSave')">
         <v-icon>mdi-check</v-icon>
       </v-btn>
       <!-- delete -->
@@ -42,12 +29,7 @@
 
 <script>
 export default {
-    props:[
-        'isEditMode',
-        'title',
-        'record'
-
-    ]
+  props: ["isEditMode", "title", "record"]
 };
 </script>
 
