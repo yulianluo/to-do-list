@@ -3,8 +3,14 @@
     <v-layout row wrap>
       <v-flex xs4 offset-xs4>
         <h1>Register</h1>
-        <v-text-field label="Email" :value="registerEmail" @input="setRegisterEmail"></v-text-field>
         <v-text-field
+          color="indigo lighten-1"
+          label="Email"
+          :value="registerEmail"
+          @input="setRegisterEmail"
+        ></v-text-field>
+        <v-text-field
+          color="indigo lighten-1"
           label="Password"
           type="password"
           autocomplete="new-password"

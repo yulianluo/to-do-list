@@ -3,8 +3,14 @@
     <v-layout row wrap>
       <v-flex xs4 offset-xs4>
         <h1>Login</h1>
-        <v-text-field label="Email" :value="loginEmail" @input="setLoginEmail"></v-text-field>
         <v-text-field
+          color="indigo lighten-1"
+          label="Email"
+          :value="loginEmail"
+          @input="setLoginEmail"
+        ></v-text-field>
+        <v-text-field
+          color="indigo lighten-1"
           label="Password"
           type="password"
           autocomplete="new-password"
@@ -23,17 +29,10 @@ import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapState("authentication", [
-      "loginEmail",
-      "loginPassword",
-      "loginError"
-    ])
+    ...mapState("authentication", ["loginEmail", "loginPassword", "loginError"])
   },
   methods: {
-    ...mapMutations("authentication", [
-      "setLoginEmail",
-      "setLoginPassword"
-    ]),
+    ...mapMutations("authentication", ["setLoginEmail", "setLoginPassword"]),
     ...mapActions("authentication", ["login"])
   }
 };

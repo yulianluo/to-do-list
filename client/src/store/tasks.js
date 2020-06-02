@@ -10,6 +10,7 @@ export default {
         newTaskName: null,
     },
     actions: {
+       
         fetchTasksForProject({ commit }, project) {
             return HTTP().get(`/projects/${project.id}/tasks`)
                 .then(({ data }) => {
@@ -36,9 +37,12 @@ export default {
                     commit('removeTask', task);                 
                 })
         },
+        
     },
     getters: {
-
+        selectedProject(state){
+            return state.selectedProject
+        }
     },
     mutations: {
         setTasks(state, tasks) {
@@ -61,7 +65,11 @@ export default {
         },
         removeTask(state, task) {
             state.tasks.splice(state.tasks.indexOf(task), 1)
-        }
+        },
+        setTaskCondition(state, task) {
+            task.completed = !task.completed
+        },
+       
     },
 
 }

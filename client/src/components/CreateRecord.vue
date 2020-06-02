@@ -10,8 +10,8 @@
         color="indigo lighten-1"
       ></v-text-field>
     </v-flex>
-    <v-flex xs2>
-      <v-btn class="mt-5 ml-4" dark color="indigo lighten-1" small @click="$emit('create')">
+    <v-flex xs3  >
+      <v-btn class="mt-5" dark color="indigo lighten-1" small @click="$emit('create')">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-flex>
@@ -23,8 +23,6 @@ export default {
     props: [
         'placeholder',
         'value',
-
-
     ],
 };
 </script>

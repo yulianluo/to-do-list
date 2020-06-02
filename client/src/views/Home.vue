@@ -29,7 +29,7 @@ export default {
   },
   mounted(){
     if(!this.isLoggedIn){
-      return router.push('/login')
+      return router.push('/about')
     }
   },
   computed:{

@@ -21,7 +21,9 @@ export default new Vuex.Store({
   },
   actions: {
   },
-  // plugins: [
-  //   createPersistedState(),
-  // ],
+  plugins: [
+    // createPersistedState(),  
+    //this plugin is for cache things in the store inside local storage
+    //so users don't need to login everytime
+  ],
 });

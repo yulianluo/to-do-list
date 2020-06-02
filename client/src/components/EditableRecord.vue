@@ -1,6 +1,7 @@
 <template>
   <v-layout>
-    <v-flex xs9 class="text-left">
+    <v-flex xs8 class="text-left">
+      <slot></slot>
       <span @click="$emit('onClick')" v-if="!isEditMode">{{ title }}</span>
       <v-text-field
         autofocus
@@ -12,7 +13,7 @@
         @input="$emit('onInput', $event)"
       ></v-text-field>
     </v-flex>
-    <v-flex xs3>
+    <v-flex xs3 offset-1>
       <v-btn text icon color="indigo lighten-2" v-if="!isEditMode" @click="$emit('onEdit')">
         <v-icon>mdi-pencil-outline</v-icon>
       </v-btn>
@@ -34,4 +35,7 @@ export default {
 </script>
 
 <style>
+span {
+  cursor: pointer;
+}
 </style>
